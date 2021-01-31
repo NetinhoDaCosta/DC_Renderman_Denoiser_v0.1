@@ -4,17 +4,24 @@ import subprocess
 import re
 import pyseq
 import time
+import interface
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
 from PyQt5 import QtGui as qtg
+import fsutil
+from pathlib import Path
+
+from pprint import pprint
+from interface import Ui_MainWindow
 
 import qtmodern.styles
 import qtmodern.windows
 
-from ffprobe import FFProbe
-from pprint import pprint
-from pymediainfo import MediaInfo
-import ffmpeg
+""" root = Path()
+if getattr(sys, 'frozen', False):
+    root = Path(sys._MEIPASS)
+    qtmodern.styles._STYLESHEET = root / 'qtmodern/style.qss'
+    qtmodern.windows._FL_STYLESHEET = root / 'qtmodern/frameless.qss' """
 
 ### Generates a command line string that converts rendered frames into denoised frames
 
@@ -68,7 +75,7 @@ print("boom")
 print(get_single_file_url(folder, sequences))
 print(folder_path)
 print("fiets")
-print(sequences.dirname(path))
+#print(sequences.dirname(path))
 print("aap")
 
 
@@ -85,3 +92,27 @@ for i  in sequences:
 
         #simple_denoise(denoiser_path,full_file_path)
 
+
+
+class Mainwindow(qtw.QMainWindow):
+    def __init__(self,*arg,**kwargs):
+        super().__init__(*arg,**kwargs)
+
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        # title = "System crawl sequence size"
+        # self.setWindowTitle(title) 
+        # self.ui.pushButton_start.clicked.connect(self.zoeken)
+        # self.ui.tableWidget_resultaat.setColumnWidth(0,495)
+        # self.ui.tableWidget_resultaat.setColumnWidth(1,497)
+        self.show()
+
+
+if __name__ == "__main__":
+    app = qtw.QApplication(sys.argv)
+    w = Mainwindow()
+
+    qtmodern.styles.dark(app)
+    mw = qtmodern.windows.ModernWindow(w)
+    mw.show()
+    sys.exit(app.exec_())
