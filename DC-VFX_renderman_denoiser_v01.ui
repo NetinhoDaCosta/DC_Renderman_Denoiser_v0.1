@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1126</width>
-    <height>1038</height>
+    <width>1110</width>
+    <height>985</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -99,7 +99,7 @@
          <attribute name="title">
           <string>Denoise</string>
          </attribute>
-         <widget class="QPushButton" name="select_btn">
+         <widget class="QPushButton" name="select_render_btn">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -137,7 +137,7 @@
            <string>Your selected render sequence is:</string>
           </property>
          </widget>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="selected_render_label">
           <property name="geometry">
            <rect>
             <x>180</x>
@@ -231,7 +231,10 @@
                 </widget>
                </item>
                <item>
-                <widget class="QRadioButton" name="radioButton_jpg">
+                <widget class="QRadioButton" name="radioButton_gpu_yes">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
                  <property name="maximumSize">
                   <size>
                    <width>100</width>
@@ -241,12 +244,18 @@
                  <property name="text">
                   <string>Yes</string>
                  </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
                 </widget>
                </item>
                <item>
-                <widget class="QRadioButton" name="radioButton_png">
+                <widget class="QRadioButton" name="radioButton_gpu_no">
                  <property name="text">
                   <string>No</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
@@ -318,7 +327,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QRadioButton" name="radioButton_jpg_2">
+                <widget class="QRadioButton" name="radioButton_skipfirst_yes">
                  <property name="maximumSize">
                   <size>
                    <width>100</width>
@@ -331,9 +340,12 @@
                 </widget>
                </item>
                <item>
-                <widget class="QRadioButton" name="radioButton_png_2">
+                <widget class="QRadioButton" name="radioButton_skipfirst_no">
                  <property name="text">
                   <string>No</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
@@ -405,7 +417,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QRadioButton" name="radioButton_jpg_3">
+                <widget class="QRadioButton" name="radioButton_skiplast_yes">
                  <property name="maximumSize">
                   <size>
                    <width>100</width>
@@ -418,9 +430,12 @@
                 </widget>
                </item>
                <item>
-                <widget class="QRadioButton" name="radioButton_png_3">
+                <widget class="QRadioButton" name="radioButton_skiplast_no">
                  <property name="text">
                   <string>No</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
                  </property>
                 </widget>
                </item>
@@ -492,20 +507,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QTextEdit" name="textEdit">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>400</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </widget>
+                <widget class="QLineEdit" name="textEdit_suffix"/>
                </item>
                <item>
                 <spacer name="horizontalSpacer_2">
@@ -588,9 +590,28 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_5">
+                <widget class="QPushButton" name="selectDirectory_btn">
+                 <property name="maximumSize">
+                  <size>
+                   <width>400</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="text">
                   <string>Select a directory...</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="custom_folder_label">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
                  </property>
                 </widget>
                </item>
@@ -662,7 +683,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QRadioButton" name="radioButton_jpg_4">
+                <widget class="QRadioButton" name="radioButton_crossframe_yes">
                  <property name="maximumSize">
                   <size>
                    <width>100</width>
@@ -672,10 +693,16 @@
                  <property name="text">
                   <string>Yes</string>
                  </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
                 </widget>
                </item>
                <item>
-                <widget class="QRadioButton" name="radioButton_png_4">
+                <widget class="QRadioButton" name="radioButton_crossframe_no">
                  <property name="text">
                   <string>No</string>
                  </property>
@@ -760,7 +787,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox_2">
+              <widget class="QComboBox" name="comboBox_filter">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -861,7 +888,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox_3">
+              <widget class="QComboBox" name="comboBox_premade_filters">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -1002,7 +1029,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox_4">
+              <widget class="QComboBox" name="comboBox_threads">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -1620,7 +1647,7 @@
            </item>
           </layout>
          </widget>
-         <widget class="QPushButton" name="select_btn_2">
+         <widget class="QPushButton" name="denoise_btn">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -1663,7 +1690,7 @@
            <string>Your denoiser.exe folder(s)</string>
           </property>
          </widget>
-         <widget class="QLineEdit" name="lineEdit">
+         <widget class="QLineEdit" name="denoiser1">
           <property name="geometry">
            <rect>
             <x>40</x>
@@ -1671,6 +1698,9 @@
             <width>541</width>
             <height>20</height>
            </rect>
+          </property>
+          <property name="text">
+           <string>C:\Program Files\Pixar\RenderManProServer-23.1\bin\denoise.exe</string>
           </property>
          </widget>
          <widget class="QLabel" name="label_4">
@@ -1723,7 +1753,7 @@
            <string>V1</string>
           </property>
          </widget>
-         <widget class="QLineEdit" name="lineEdit_2">
+         <widget class="QLineEdit" name="denoiser2">
           <property name="geometry">
            <rect>
             <x>40</x>
@@ -1733,7 +1763,7 @@
            </rect>
           </property>
          </widget>
-         <widget class="QLineEdit" name="lineEdit_3">
+         <widget class="QLineEdit" name="denoiser3">
           <property name="geometry">
            <rect>
             <x>40</x>
@@ -1743,7 +1773,7 @@
            </rect>
           </property>
          </widget>
-         <widget class="QLineEdit" name="lineEdit_4">
+         <widget class="QLineEdit" name="denoiser4">
           <property name="geometry">
            <rect>
             <x>40</x>
@@ -1763,7 +1793,7 @@
            </rect>
           </property>
          </widget>
-         <widget class="QLineEdit" name="lineEdit_6">
+         <widget class="QLineEdit" name="denoiser6">
           <property name="geometry">
            <rect>
             <x>40</x>
@@ -1773,7 +1803,7 @@
            </rect>
           </property>
          </widget>
-         <widget class="QLineEdit" name="lineEdit_7">
+         <widget class="QLineEdit" name="denoiser7">
           <property name="geometry">
            <rect>
             <x>40</x>
@@ -1783,7 +1813,7 @@
            </rect>
           </property>
          </widget>
-         <widget class="QLineEdit" name="lineEdit_8">
+         <widget class="QLineEdit" name="denoiser8">
           <property name="geometry">
            <rect>
             <x>40</x>
@@ -1793,7 +1823,7 @@
            </rect>
           </property>
          </widget>
-         <widget class="QLineEdit" name="lineEdit_9">
+         <widget class="QLineEdit" name="denoiser9">
           <property name="geometry">
            <rect>
             <x>40</x>
@@ -1878,7 +1908,7 @@
            <string>V4</string>
           </property>
          </widget>
-         <widget class="QLabel" name="label_12">
+         <widget class="QLabel" name="denoiser5">
           <property name="geometry">
            <rect>
             <x>20</x>
@@ -2003,7 +2033,7 @@
            <string>V9</string>
           </property>
          </widget>
-         <widget class="QRadioButton" name="radioButton">
+         <widget class="QRadioButton" name="denoiser_radio1">
           <property name="geometry">
            <rect>
             <x>630</x>
@@ -2015,8 +2045,11 @@
           <property name="text">
            <string/>
           </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
          </widget>
-         <widget class="QRadioButton" name="radioButton_2">
+         <widget class="QRadioButton" name="denoiser_radio2">
           <property name="geometry">
            <rect>
             <x>630</x>
@@ -2029,7 +2062,7 @@
            <string/>
           </property>
          </widget>
-         <widget class="QRadioButton" name="radioButton_3">
+         <widget class="QRadioButton" name="denoiser_radio3">
           <property name="geometry">
            <rect>
             <x>630</x>
@@ -2042,7 +2075,7 @@
            <string/>
           </property>
          </widget>
-         <widget class="QRadioButton" name="radioButton_4">
+         <widget class="QRadioButton" name="denoiser_radio4">
           <property name="geometry">
            <rect>
             <x>630</x>
@@ -2055,7 +2088,7 @@
            <string/>
           </property>
          </widget>
-         <widget class="QRadioButton" name="radioButton_5">
+         <widget class="QRadioButton" name="denoiser_radio5">
           <property name="geometry">
            <rect>
             <x>630</x>
@@ -2068,7 +2101,7 @@
            <string/>
           </property>
          </widget>
-         <widget class="QRadioButton" name="radioButton_6">
+         <widget class="QRadioButton" name="denoiser_radio6">
           <property name="geometry">
            <rect>
             <x>630</x>
@@ -2081,7 +2114,7 @@
            <string/>
           </property>
          </widget>
-         <widget class="QRadioButton" name="radioButton_7">
+         <widget class="QRadioButton" name="denoiser_radio7">
           <property name="geometry">
            <rect>
             <x>630</x>
@@ -2094,7 +2127,7 @@
            <string/>
           </property>
          </widget>
-         <widget class="QRadioButton" name="radioButton_8">
+         <widget class="QRadioButton" name="denoiser_radio8">
           <property name="geometry">
            <rect>
             <x>630</x>
@@ -2107,7 +2140,7 @@
            <string/>
           </property>
          </widget>
-         <widget class="QRadioButton" name="radioButton_9">
+         <widget class="QRadioButton" name="denoiser_radio9">
           <property name="geometry">
            <rect>
             <x>630</x>
@@ -2132,7 +2165,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1126</width>
+     <width>1110</width>
      <height>21</height>
     </rect>
    </property>

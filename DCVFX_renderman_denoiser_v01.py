@@ -8,6 +8,8 @@ import interface
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
 from PyQt5 import QtGui as qtg
+from PyQt5.QtCore import QUrl
+
 import fsutil
 from pathlib import Path
 
@@ -100,12 +102,126 @@ class Mainwindow(qtw.QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        # title = "System crawl sequence size"
-        # self.setWindowTitle(title) 
-        # self.ui.pushButton_start.clicked.connect(self.zoeken)
-        # self.ui.tableWidget_resultaat.setColumnWidth(0,495)
-        # self.ui.tableWidget_resultaat.setColumnWidth(1,497)
+
+        self.ui.select_render_btn.clicked.connect(self.selectRender)
+        self.ui.selectDirectory_btn.clicked.connect(self.selectFolder)
+        self.ui.denoise_btn.clicked.connect(self.denoiseRender)
+
+
+        self.denoise_command = []
+        self.folderPath = [""]
+        self.command_string = ""
+
+        print(self.denoise_command)
         self.show()
+
+    def selectFolder(self):
+        catch_folderPath = str(qtw.QFileDialog.getExistingDirectory (self, "Selecteer een Directory"))
+        print(catch_folderPath)
+
+        self.folderPath.append(catch_folderPath)
+        self.ui.custom_folder_label.setText(catch_folderPath)
+
+    def selectRender(self):
+        file = str(qtw.QFileDialog.getOpenFileName (self, "Selecteer een Directory"))
+        file_list=file.split(",")
+        first_filepath_item = file_list[0]
+        first_filepath_itemUrl = first_filepath_item[1:]
+
+        self.ui.selected_render_label.setText(first_filepath_itemUrl)
+
+        # get correctversion of the denoiser .exe
+        #denoise_path = self.ui.denoiser1.text()
+
+
+    def denoiseRender(self):
+
+        # APPEND TO THE CORR MAIN COMMAND
+        if (len(self.ui.denoiser1.text()) > 1 and self.ui.denoiser_radio1.isChecked()):
+            self.denoise_command.append(self.ui.denoiser1.text())
+            print(self.denoise_command)
+
+        if (len(self.ui.denoiser2.text()) > 1 and self.ui.denoiser_radio2.isChecked()):
+            self.denoise_command.append(self.ui.denoiser2.text())
+            print(self.denoise_command)
+
+        if (len(self.ui.denoiser3.text()) > 1 and self.ui.denoiser_radio3.isChecked()):
+            self.denoise_command.append(self.ui.denoiser3.text())
+            print(self.denoise_command)
+
+        if (len(self.ui.denoiser4.text()) > 1 and self.ui.denoiser_radio4.isChecked()):
+            self.denoise_command.append(self.ui.denoiser4.text())
+            print(self.denoise_command)
+
+        if (len(self.ui.denoiser5.text()) > 1 and self.ui.denoiser_radio5.isChecked()):
+            self.denoise_command.append(self.ui.denoiser5.text())
+            print(self.denoise_command)
+
+        if (len(self.ui.denoiser6.text()) > 1 and self.ui.denoiser_radio6.isChecked()):
+            self.denoise_command.append(self.ui.denoiser6.text())
+            print(self.denoise_command)
+
+        if (len(self.ui.denoiser7.text()) > 1 and self.ui.denoiser_radio7.isChecked()):
+            self.denoise_command.append(self.ui.denoiser7.text())
+            print(self.denoise_command)
+
+        if (len(self.ui.denoiser8.text()) > 1 and self.ui.denoiser_radio8.isChecked()):
+            self.denoise_command.append(self.ui.denoiser8.text())
+            print(self.denoise_command)
+
+        if (len(self.ui.denoiser9.text()) > 1 and self.ui.denoiser_radio9.isChecked()):
+            self.denoise_command.append(self.ui.denoiser9.text())
+            print(self.denoise_command)
+
+        if (self.ui.radioButton_gpu_yes.isChecked() ):
+            self.denoise_command.append("--override gpuIndex 0")
+
+        if (self.ui.radioButton_skipfirst_yes.isChecked()):
+            self.denoise_command.append("--skipfirst, -F")
+
+        if (self.ui.radioButton_skiplast_yes.isChecked()):
+            self.denoise_command.append("--skiplast, -L")
+
+        if (len(self.ui.textEdit_suffix.text()) > 1):
+            self.denoise_command.append(self.ui.textEdit_suffix.text())
+
+        if (self.ui.radioButton_crossframe_yes.isChecked()):
+            self.denoise_command.append("--crossframe")
+
+        denoise_filter = self.ui.comboBox_filter.currentText()
+        self.denoise_command.append("-f " + str(denoise_filter))
+
+        denoise_premade_filter = self.ui.comboBox_premade_filters.currentText()
+        self.denoise_command.append("-f " + str(denoise_premade_filter))
+
+        threads = self.ui.comboBox_threads.currentText()
+        self.denoise_command.append("-t " + str(threads))
+
+
+
+
+
+        print(type(self.denoise_command))
+        self.command_string.join(self.denoise_command)
+        
+        print(self.denoise_command)
+        
+        
+        print("boom")
+        print(str(self.command_string))
+        print("fiets")
+
+        for command_item in self.denoise_command:
+            print(command_item)
+            #self.command_string.join(command_item)
+        #print("command string is: " + str(self.command_string))
+        
+
+
+
+
+
+#comboBox_filter
 
 
 if __name__ == "__main__":
