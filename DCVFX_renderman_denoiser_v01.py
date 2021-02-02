@@ -198,24 +198,23 @@ class Mainwindow(qtw.QMainWindow):
         self.denoise_command.append("-t " + str(threads))
 
 
-
-
-
-        print(type(self.denoise_command))
-        self.command_string.join(self.denoise_command)
-        
-        print(self.denoise_command)
-        
-        
-        print("boom")
-        print(str(self.command_string))
-        print("fiets")
-
+        dc_denoise_command = ""
         for command_item in self.denoise_command:
             print(command_item)
+            spaced_item = " " + str(command_item) + " "
+
+            dc_denoise_command += str(spaced_item)
+
             #self.command_string.join(command_item)
+            folderpath_command = "--outdir " + str(self.folderPath[1])
+        final_denoise_command = dc_denoise_command + folderpath_command
+
+        print(final_denoise_command)
+
+
+
         #print("command string is: " + str(self.command_string))
-        
+
 
 
 
