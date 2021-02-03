@@ -212,25 +212,34 @@ class Mainwindow(qtw.QMainWindow):
         #adds frames
         final_denoise_command = clean_denoise_command 
 
-        print(clean_denoise_command)
+        print("clean command is : " + str(clean_denoise_command))
 
         sequences2 = detect_sequences(self.ui.selected_render_label.text())
         print(sequences2)
 
         #print("command string is: " + str(self.command_string))
 
-        render_sequence = pyseq.get_sequences(self.ui.selected_render_label.text())
+        render_sequence = pyseq.get_sequences("H:\\test")
+        print("label is : " + str(self.ui.selected_render_label.text()))
+        print(type(render_sequence))
+        print(render_sequence)
 
+        for p in range(10):
+            print("boom")
 
-        for i  in render_sequence:
-            for x in i:
-                folder = "H:\\test\\"
+        for g in render_sequence:
+            print("g is : " + str(g))
+            for x in g:
+                print("x is : " + str(x))
+                folder2 = "H:\\test\\"
                 # filepath = folder + "\\" +  x
-                full_file_path = str(folder) + str(x)
+                full_file_path = str(folder2) + str(x) + ".exr"
+                print("full filepath is: " + str(full_file_path))
 
 
-                final_denoise_command = final_denoise_command += full_file_path
-                subprocess.check_output(command, shell=True)
+                final_denoise_command2 = final_denoise_command + " " + full_file_path
+                print(final_denoise_command2)
+                subprocess.check_output(final_denoise_command2, shell=True) 
 
 
 
