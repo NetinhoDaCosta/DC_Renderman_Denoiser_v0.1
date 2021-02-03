@@ -207,14 +207,30 @@ class Mainwindow(qtw.QMainWindow):
 
             #self.command_string.join(command_item)
             folderpath_command = "--outdir " + str(self.folderPath[1])
-        final_denoise_command = dc_denoise_command + folderpath_command
+        clean_denoise_command = dc_denoise_command + folderpath_command
 
-        print(final_denoise_command)
+        #adds frames
+        final_denoise_command = clean_denoise_command 
 
+        print(clean_denoise_command)
 
+        sequences2 = detect_sequences(self.ui.selected_render_label.text())
+        print(sequences2)
 
         #print("command string is: " + str(self.command_string))
 
+        render_sequence = pyseq.get_sequences(self.ui.selected_render_label.text())
+
+
+        for i  in render_sequence:
+            for x in i:
+                folder = "H:\\test\\"
+                # filepath = folder + "\\" +  x
+                full_file_path = str(folder) + str(x)
+
+
+                final_denoise_command = final_denoise_command += full_file_path
+                subprocess.check_output(command, shell=True)
 
 
 
