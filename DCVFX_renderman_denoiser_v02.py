@@ -29,8 +29,7 @@ if getattr(sys, 'frozen', False):
 ### Generates a command line string that converts rendered frames into denoised frames
 
 path = "H:\\test"
-
-
+render_sequence_list = []
 
 
 """ selected_file = "H:\\tes232t\\r_frame187687.exr"
@@ -38,7 +37,7 @@ print("selected file is :" + selected_file)
 without_extention = selected_file.replace(".exr", "")
 my_regex_pattern =  r"\d+\b"
 print("no ext = " + str(without_extention))
-without_number = re.sub(my_regex_pattern, "-----------" ,without_extention)
+without_number = re.sub(my_regex_pattern, "@.exr" ,without_extention)
 #s = without_extention.sub("^\d+\s|\s\d+\s|\s\d+$", " ", s)
 print(without_number)
 print("========================================")
@@ -46,17 +45,20 @@ print("========================================")
 mijn_sequences = fileseq.findSequencesOnDisk('H:/test/r_frame@.exr')
 
 
-regex = "\d*\b"
-
 print("fileseq is"  +  str(mijn_sequences))
 print(type(mijn_sequences))
 print(len(mijn_sequences))
 for p in mijn_sequences:
 
     for u in p:
-        pass
-        #print("waarde is: " + str(u))
+        print("waarde is: " + str(u))
+
+
  """
+
+
+
+
 
 
 RenderManProServerFolder = r"C:\Program Files\Pixar\RenderManProServer-23.1"
@@ -163,31 +165,11 @@ class Mainwindow(qtw.QMainWindow):
         first_filepath_itemUrl = first_filepath_item[1:]
 
         self.ui.selected_render_label.setText(first_filepath_itemUrl)
-        print("label is : " + first_filepath_itemUrl)
-
-        #create render sequence list
-        selected_file = first_filepath_itemUrl
-        without_extention = selected_file.replace(".exr", "")
-        my_regex_pattern =  r"\d+\b"
-        sequence_name_with_replaced_number = re.sub(my_regex_pattern, "@.exr" ,without_extention)
-        mijn_sequences = fileseq.findSequencesOnDisk("r{}".format(sequence_name_with_replaced_number))
-
-        print("9999999999999999999999999999")
-        print(type(sequence_name_with_replaced_number))
-        print("sequence_name_with_replaced_number = " + sequence_name_with_replaced_number)
-        print(mijn_sequences)
-        for p in mijn_sequences:
-            print(" mijn P waarde is: " + str(p))
-            for u in p:
-                print("ECHTE __________ waarde is: " + str(u))
-        print("2222222222222222222222222222")
 
 
-
-
-        render_sequence = pyseq.get_sequences(str(first_filepath_itemUrl))
+        render_sequence = pyseq.get_sequences(first_filepath_itemUrl)
         #print(pyseq.__dict__)
-        
+        print("label is : " + first_filepath_itemUrl)
         print(type(render_sequence))
         print(render_sequence)
         #print(frames(render_sequence))

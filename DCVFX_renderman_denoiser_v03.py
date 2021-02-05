@@ -170,7 +170,11 @@ class Mainwindow(qtw.QMainWindow):
         without_extention = selected_file.replace(".exr", "")
         my_regex_pattern =  r"\d+\b"
         sequence_name_with_replaced_number = re.sub(my_regex_pattern, "@.exr" ,without_extention)
-        mijn_sequences = fileseq.findSequencesOnDisk("r{}".format(sequence_name_with_replaced_number))
+        tijdelijk = "%r"%sequence_name_with_replaced_number
+        mijn_sequences = fileseq.findSequencesOnDisk(tijdelijk)
+
+
+
 
         print("9999999999999999999999999999")
         print(type(sequence_name_with_replaced_number))
@@ -187,7 +191,7 @@ class Mainwindow(qtw.QMainWindow):
 
         render_sequence = pyseq.get_sequences(str(first_filepath_itemUrl))
         #print(pyseq.__dict__)
-        
+
         print(type(render_sequence))
         print(render_sequence)
         #print(frames(render_sequence))
