@@ -4,6 +4,7 @@ import subprocess
 import re
 import pyseq
 import time
+import fileseq
 import interface
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
@@ -28,6 +29,30 @@ if getattr(sys, 'frozen', False):
 ### Generates a command line string that converts rendered frames into denoised frames
 
 path = "H:\\test"
+selected_file = "H:\\tes232t\\r_frame187687.exr"
+print("selected file is :" + selected_file)
+without_extention = selected_file.replace(".exr", "")
+my_regex_pattern =  r"\d+\b"
+print("no ext = " + str(without_extention))
+without_number = re.sub(my_regex_pattern, "-----------" ,without_extention)
+#s = without_extention.sub("^\d+\s|\s\d+\s|\s\d+$", " ", s)
+print(without_number)
+print("========================================")
+
+mijn_sequences = fileseq.findSequencesOnDisk('H:/test/r_frame@.exr')
+
+
+regex = "\d*\b"
+
+print("fileseq is"  +  str(mijn_sequences))
+print(type(mijn_sequences))
+print(len(mijn_sequences))
+for p in mijn_sequences:
+
+    for u in p:
+        print("waarde is: " + str(u))
+
+
 
 RenderManProServerFolder = r"C:\Program Files\Pixar\RenderManProServer-23.1"
 denoiser_path = RenderManProServerFolder + r"\bin\denoise.exe"
@@ -122,13 +147,25 @@ class Mainwindow(qtw.QMainWindow):
         self.folderPath.append(catch_folderPath)
         self.ui.custom_folder_label.setText(catch_folderPath)
 
+
+
+
     def selectRender(self):
         file = str(qtw.QFileDialog.getOpenFileName (self, "Selecteer een Directory"))
         file_list=file.split(",")
         first_filepath_item = file_list[0]
+        print("first_filepath_item is : " + str(first_filepath_item))
         first_filepath_itemUrl = first_filepath_item[1:]
 
         self.ui.selected_render_label.setText(first_filepath_itemUrl)
+
+
+        render_sequence = pyseq.get_sequences(first_filepath_itemUrl)
+        #print(pyseq.__dict__)
+        print("label is : " + first_filepath_itemUrl)
+        print(type(render_sequence))
+        print(render_sequence)
+        #print(frames(render_sequence))
 
         # get correctversion of the denoiser .exe
         #denoise_path = self.ui.denoiser1.text()
