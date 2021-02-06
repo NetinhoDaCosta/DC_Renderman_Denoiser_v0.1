@@ -170,8 +170,8 @@ class Mainwindow(qtw.QMainWindow):
         without_extention = selected_file.replace(".exr", "")
         my_regex_pattern =  r"\d+\b"
         sequence_name_with_replaced_number = re.sub(my_regex_pattern, "@.exr" ,without_extention)
-        tijdelijk = "%r"%sequence_name_with_replaced_number
-        mijn_sequences = fileseq.findSequencesOnDisk(tijdelijk)
+        cleaned_sequence = sequence_name_with_replaced_number[1:-1]
+        mijn_sequences = fileseq.findSequencesOnDisk(cleaned_sequence)
 
 
 
@@ -179,6 +179,9 @@ class Mainwindow(qtw.QMainWindow):
         print("9999999999999999999999999999")
         print(type(sequence_name_with_replaced_number))
         print("sequence_name_with_replaced_number = " + sequence_name_with_replaced_number)
+        print(len(sequence_name_with_replaced_number))
+        mijn_woord = "H:/test/r_frame@.exr"
+        print(len(mijn_woord))
         print(mijn_sequences)
         for p in mijn_sequences:
             print(" mijn P waarde is: " + str(p))
