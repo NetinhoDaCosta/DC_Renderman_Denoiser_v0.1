@@ -103,18 +103,17 @@ def get_folder(file_path):
 folder_path = get_folder(get_single_file_url(folder,sequences))
 
 
-print("boom")
 print(get_single_file_url(folder, sequences))
 print(folder_path)
-print("fiets")
+
 #print(sequences.dirname(path))
-print("aap")
+
 
 
 nr_of_sequences = len(sequences)
 
 for i  in sequences:
-    print("test_denoising")
+    
     for x in i:
         folder = "H:\\test\\"
         # filepath = folder + "\\" +  x
