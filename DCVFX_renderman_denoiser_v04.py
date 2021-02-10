@@ -20,6 +20,13 @@ from interface import Ui_MainWindow
 import qtmodern.styles
 import qtmodern.windows
 
+# TODO noisefilterpath fixen, ervoor zorgen dat aan het begin en aan het einde ervan een "" teken komt.
+
+
+
+
+
+
 """ root = Path()
 if getattr(sys, 'frozen', False):
     root = Path(sys._MEIPASS)
@@ -64,6 +71,8 @@ denoiser_path = RenderManProServerFolder + r"\bin\denoise.exe"
 
 
 noisefilter = r"C:\Program Files\Pixar\RenderManProServer-23.1\lib\denoise\splitVariances.filteroverride.json"
+noise_filter_path = RenderManProServerFolder + "\lib\denoise\\"
+
 
 
 def simple_denoise(denoiser_path, filename):
@@ -263,7 +272,7 @@ class Mainwindow(qtw.QMainWindow):
         denoise_filter = self.ui.comboBox_filter.currentText()
         self.denoise_command.append("-f " + str(denoise_filter))
 
-        denoise_premade_filter = self.ui.comboBox_premade_filters.currentText()
+        denoise_premade_filter = noise_filter_path +  self.ui.comboBox_premade_filters.currentText()
         self.denoise_command.append("-f " + str(denoise_premade_filter))
 
         threads = self.ui.comboBox_threads.currentText()
