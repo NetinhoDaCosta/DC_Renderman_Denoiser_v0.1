@@ -270,9 +270,10 @@ class Mainwindow(qtw.QMainWindow):
             self.denoise_command.append("--crossframe")
 
         denoise_filter = self.ui.comboBox_filter.currentText()
-        self.denoise_command.append("-f " + str(denoise_filter))
+        denoise_filter_withPath = '"' + noise_filter_path + denoise_filter + ".filter.json" + '"'
+        self.denoise_command.append("-f " + str(denoise_filter_withPath))
 
-        denoise_premade_filter = noise_filter_path +  self.ui.comboBox_premade_filters.currentText()
+        denoise_premade_filter = '"' + noise_filter_path +  self.ui.comboBox_premade_filters.currentText() + '"'
         self.denoise_command.append("-f " + str(denoise_premade_filter))
 
         threads = self.ui.comboBox_threads.currentText()
