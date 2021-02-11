@@ -22,8 +22,8 @@ import qtmodern.windows
 
 
 path = "H:\\test"
-mijn_sequences = ""
 
+mijn_sequences = ""
 
 
 
@@ -34,6 +34,12 @@ denoiser_path = RenderManProServerFolder + r"\bin\denoise.exe"
 noisefilter = r"C:\Program Files\Pixar\RenderManProServer-23.1\lib\denoise\splitVariances.filteroverride.json"
 noise_filter_path = RenderManProServerFolder + "\lib\denoise\\"
 
+
+
+def simple_denoise(denoiser_path, filename):
+    command = f'"{denoiser_path}" --crossframe -v variance --override gpuIndex 1 -t 6 -f "{noisefilter}" "{filename}"'
+    print(command)
+    subprocess.check_output(command, shell=True)
 
 
 def detect_sequences(pad): # geeft een pad aan en ontvang alle sequences uit dat pad.
@@ -85,7 +91,7 @@ for i  in sequences:
         print(denoiser_path)
         print(full_file_path)
 
-   
+        #simple_denoise(denoiser_path,full_file_path)
 
 
 
@@ -119,7 +125,7 @@ class Mainwindow(qtw.QMainWindow):
 
 
     def selectRender(self):
-
+        
         #gets the render file
         file = str(qtw.QFileDialog.getOpenFileName (self, "Selecteer een Directory"))
         file_list=file.split(",")
@@ -140,23 +146,41 @@ class Mainwindow(qtw.QMainWindow):
         mijn_sequences = fileseq.findSequencesOnDisk(cleaned_sequence)
 
 
-        for p in mijn_sequences:
-            print(" my P value is: " + str(p))
-            for u in p:
-                print("my U value is: " + str(u))
 
+
+        print("9999999999999999999999999999")
+        print(type(sequence_name_with_replaced_number))
+        print("sequence_name_with_replaced_number = " + sequence_name_with_replaced_number)
+        print(len(sequence_name_with_replaced_number))
+        mijn_woord = "H:/test/r_frame@.exr"
+        print(len(mijn_woord))
+        print(mijn_sequences)
+        
+        for p in mijn_sequences:
+            print(" mijn P waarde is: " + str(p))
+            for u in p:
+                print("ECHTE __________ waarde is: " + str(u))
+        
 
         self.mijn_sequences = mijn_sequences
 
+
+        #render_sequence = pyseq.get_sequences(str(first_filepath_itemUrl))
+        #print(pyseq.__dict__)
+
+        #print(type(render_sequence))
+        #print(render_sequence)
+        #print(frames(render_sequence))
+
+        # get correctversion of the denoiser .exe
+        #denoise_path = self.ui.denoiser1.text()
 
 
     def denoiseRender(self):
 
         # APPEND TO THE CORR MAIN COMMAND
-        #denoiser1, denoiser2 etc are the denoisr .exe paths
         if (len(self.ui.denoiser1.text()) > 1 and self.ui.denoiser_radio1.isChecked()):
-            denoiser1_url = '"' + self.ui.denoiser1.text() + '"'
-            self.denoise_command.append(denoiser1_url)
+            self.denoise_command.append(self.ui.denoiser1.text())
             print(self.denoise_command)
 
         if (len(self.ui.denoiser2.text()) > 1 and self.ui.denoiser_radio2.isChecked()):
@@ -237,6 +261,7 @@ class Mainwindow(qtw.QMainWindow):
 
         # for every sequence deo teh command
 
+
         for render_item in self.mijn_sequences:
             print(" mijn render_item waarde is: " + str(render_item))
             for render_file in render_item:
@@ -246,6 +271,7 @@ class Mainwindow(qtw.QMainWindow):
                 batch_command = final_denoise_command + " " + clean_render_file
                 print("batch command is: " + batch_command)
                 subprocess.check_output(batch_command, shell=True) 
+
 
 
         sequences2 = detect_sequences(self.ui.selected_render_label.text())
@@ -258,7 +284,13 @@ class Mainwindow(qtw.QMainWindow):
         print(type(render_sequence))
         print(render_sequence)
 
+    
 
+
+
+
+
+#comboBox_filter
 
 
 if __name__ == "__main__":
