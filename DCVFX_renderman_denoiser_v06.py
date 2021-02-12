@@ -151,6 +151,9 @@ class Mainwindow(qtw.QMainWindow):
         self.command_string = ""
 
         print(self.denoise_command)
+        print("folderpath zelf: " + str(self.folderPath))
+        print("lengte van folderpath: " + str(len(self.folderPath)))
+        print("type folderpath: " + str(type(self.folderPath)))
         self.show()
 
     def selectFolder(self):
@@ -164,7 +167,7 @@ class Mainwindow(qtw.QMainWindow):
 
 
     def selectRender(self):
-        
+
         #gets the render file
         file = str(qtw.QFileDialog.getOpenFileName (self, "Selecteer een Directory"))
         file_list=file.split(",")
@@ -290,7 +293,17 @@ class Mainwindow(qtw.QMainWindow):
             dc_denoise_command += str(spaced_item)
 
             #self.command_string.join(command_item)
-            folderpath_command = "--outdir " + str(self.folderPath[1])
+            if len(self.folderPath) > 1 :
+                print("groter ----------------------")
+                print(len(str(self.folderPath[1])))
+                folderpath_command = "--outdir " + str(self.folderPath[1])
+            if self.folderPath == '' :
+                print("kleiner -------------------------------------------------------------------------------------------------")
+                #print(len(str(self.folderPath[1])))
+                folderpath_command = " "
+
+            #folderpath_command = "--outdir " + str(self.folderPath[1])
+            print("folderpath command = " + str(folderpath_command))
         clean_denoise_command = dc_denoise_command + folderpath_command
 
         #adds frames
