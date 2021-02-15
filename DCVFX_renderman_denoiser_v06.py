@@ -298,7 +298,7 @@ class Mainwindow(qtw.QMainWindow):
                 print(len(str(self.folderPath[1])))
                 folderpath_command = "--outdir " + str(self.folderPath[1])
             if self.folderPath == '' :
-                print("kleiner -------------------------------------------------------------------------------------------------")
+                print("kleiner ------")
                 #print(len(str(self.folderPath[1])))
                 folderpath_command = " "
 
