@@ -190,19 +190,18 @@ class Mainwindow(qtw.QMainWindow):
 
 
 
-        print("9999999999999999999999999999")
+        print("909")
         print(type(sequence_name_with_replaced_number))
         print("sequence_name_with_replaced_number = " + sequence_name_with_replaced_number)
         print(len(sequence_name_with_replaced_number))
         mijn_woord = "H:/test/r_frame@.exr"
         print(len(mijn_woord))
         print(mijn_sequences)
-        
+
         for p in mijn_sequences:
             print(" mijn P waarde is: " + str(p))
             for u in p:
                 print("ECHTE __________ waarde is: " + str(u))
-        
 
         self.mijn_sequences = mijn_sequences
 
@@ -336,10 +335,6 @@ class Mainwindow(qtw.QMainWindow):
         print("label is : " + str(self.ui.selected_render_label.text()))
         print(type(render_sequence))
         print(render_sequence)
-
-    
-
-
 
 
 
