@@ -154,6 +154,7 @@ class Mainwindow(qtw.QMainWindow):
         print("folderpath zelf: " + str(self.folderPath))
         print("lengte van folderpath: " + str(len(self.folderPath)))
         print("type folderpath: " + str(type(self.folderPath)))
+        print("custom folder label ------------- is: " +  self.ui.custom_folder_label.text())
         self.show()
 
     def selectFolder(self):
@@ -292,11 +293,11 @@ class Mainwindow(qtw.QMainWindow):
             dc_denoise_command += str(spaced_item)
 
             #self.command_string.join(command_item)
-            if len(self.folderPath) > 1 :
+            if self.ui.custom_folder_label.text() != "..." :
                 print("groter ----------------------")
                 print(len(str(self.folderPath[1])))
                 folderpath_command = "--outdir " + str(self.folderPath[1])
-            if self.folderPath == '' :
+            if self.ui.custom_folder_label.text() == "..." :
                 print("kleiner ------")
                 #print(len(str(self.folderPath[1])))
                 folderpath_command = " "
