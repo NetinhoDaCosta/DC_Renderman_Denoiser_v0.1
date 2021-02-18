@@ -25,7 +25,17 @@ import qtmodern.windows
 
 
 
-
+first_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_1")
+second_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_2")
+third_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_3")
+fourth_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_4")
+fifth_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_5")
+first_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_6")
+sixth_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_7")
+seventh_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_8")
+eighth_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_9")
+print("first_exe_path = " + str(first_exe_path))
+print
 
 """ root = Path()
 if getattr(sys, 'frozen', False):
@@ -83,11 +93,7 @@ def simple_denoise(denoiser_path, filename):
 
 def detect_sequences(pad): # geeft een pad aan en ontvang alle sequences uit dat pad.
     seq = pyseq.get_sequences(pad) # dit is een pad waar meerdere sequences in bestaan
-    #pp = pprint.PrettyPrinter(indent=4)
-    #pp.pprint(folder)
-    #print(str(pad) + " bevat volgende aantal file sequenses: " + str(len(folder))) # aantal folder in folder
-    #print_lijstnamen(folder)
-    #print("type folder is:" +  str(type(folder)))
+
     return seq
 
 
@@ -112,12 +118,6 @@ def get_folder(file_path):
 folder_path = get_folder(get_single_file_url(folder,sequences))
 
 
-print(get_single_file_url(folder, sequences))
-print(folder_path)
-
-#print(sequences.dirname(path))
-
-
 
 nr_of_sequences = len(sequences)
 
@@ -127,8 +127,6 @@ for i  in sequences:
         folder = "H:\\test\\"
         # filepath = folder + "\\" +  x
         full_file_path = str(folder) + str(x)
-        print(denoiser_path)
-        print(full_file_path)
 
         #simple_denoise(denoiser_path,full_file_path)
 
@@ -159,8 +157,6 @@ class Mainwindow(qtw.QMainWindow):
 
     def selectFolder(self):
         catch_folderPath = str(qtw.QFileDialog.getExistingDirectory (self, "Selecteer een Directory"))
-        print(catch_folderPath)
-
         self.folderPath.append(catch_folderPath)
         self.ui.custom_folder_label.setText(catch_folderPath)
 
@@ -187,17 +183,6 @@ class Mainwindow(qtw.QMainWindow):
         sequence_name_with_replaced_number = re.sub(my_regex_pattern, "@.exr" ,without_extention)
         cleaned_sequence = sequence_name_with_replaced_number[1:-1]
         mijn_sequences = fileseq.findSequencesOnDisk(cleaned_sequence)
-
-
-
-
-        print("909")
-        print(type(sequence_name_with_replaced_number))
-        print("sequence_name_with_replaced_number = " + sequence_name_with_replaced_number)
-        print(len(sequence_name_with_replaced_number))
-        mijn_woord = "H:/test/r_frame@.exr"
-        print(len(mijn_woord))
-        print(mijn_sequences)
 
         for p in mijn_sequences:
             print(" mijn P waarde is: " + str(p))
@@ -294,22 +279,15 @@ class Mainwindow(qtw.QMainWindow):
 
             #self.command_string.join(command_item)
             if self.ui.custom_folder_label.text() != "..." :
-                print("groter ----------------------")
-                print(len(str(self.folderPath[1])))
                 folderpath_command = "--outdir " + str(self.folderPath[1])
             if self.ui.custom_folder_label.text() == "..." :
-                print("kleiner ------")
-                #print(len(str(self.folderPath[1])))
                 folderpath_command = " "
 
-            #folderpath_command = "--outdir " + str(self.folderPath[1])
-            print("folderpath command = " + str(folderpath_command))
         clean_denoise_command = dc_denoise_command + folderpath_command
 
         #adds frames
         final_denoise_command = clean_denoise_command 
 
-        print("clean command is : " + str(clean_denoise_command))
 
 
         # for every sequence deo teh command
