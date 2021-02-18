@@ -25,17 +25,18 @@ import qtmodern.windows
 
 
 
-first_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_1")
-second_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_2")
-third_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_3")
-fourth_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_4")
-fifth_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_5")
-first_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_6")
-sixth_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_7")
-seventh_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_8")
-eighth_exe_path = os.environ.get("DC_RENDERMAN_DENOISER_9")
-print("first_exe_path = " + str(first_exe_path))
-print
+A_path = os.environ.get('DC_RENDERMAN_DENOISER_1')
+B_path = os.environ.get("DC_RENDERMAN_DENOISER_2")
+C_path = os.environ.get("DC_RENDERMAN_DENOISER_3")
+D_path = os.environ.get("DC_RENDERMAN_DENOISER_4")
+E_path = os.environ.get("DC_RENDERMAN_DENOISER_5")
+F_path = os.environ.get("DC_RENDERMAN_DENOISER_6")
+G_path = os.environ.get("DC_RENDERMAN_DENOISER_7")
+H_path = os.environ.get("DC_RENDERMAN_DENOISER_8")
+I_path = os.environ.get("DC_RENDERMAN_DENOISER_9")
+
+# First check if the UI exe variable exist, if so use that, if not check ENVs
+
 
 """ root = Path()
 if getattr(sys, 'frozen', False):
