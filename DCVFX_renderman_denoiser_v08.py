@@ -24,8 +24,7 @@ import qtmodern.styles
 import qtmodern.windows
 
 
-
-
+root = Path()
 if getattr(sys, 'frozen', False):
     root = Path(sys._MEIPASS)
     qtmodern.styles._STYLESHEET = root / 'qtmodern/style.qss'
