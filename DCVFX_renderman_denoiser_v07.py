@@ -10,6 +10,7 @@ from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
 from PyQt5 import QtGui as qtg
 from PyQt5.QtCore import QUrl
+from PyQt5.QtWidgets import QMessageBox
 
 import fsutil
 from pathlib import Path
@@ -204,44 +205,111 @@ class Mainwindow(qtw.QMainWindow):
         #denoise_path = self.ui.denoiser1.text()
 
 
+
     def denoiseRender(self):
 
         # APPEND TO THE CORR MAIN COMMAND
+
+        if (len(self.ui.denoiser1.text()) > 1):
+            Denoiser1_value = self.ui.denoiser1.text()
+        else: 
+            Denoiser1_value = A_path
+
+        if (len(self.ui.denoiser2.text()) > 1):
+            Denoiser2_value = self.ui.denoiser2.text()
+        else: 
+            Denoiser2_value = B_path
+
+        if (len(self.ui.denoiser3.text()) > 1):
+            Denoiser3_value = self.ui.denoiser3.text()
+        else: 
+            Denoiser3_value = C_path
+
+        if (len(self.ui.denoiser4.text()) > 1):
+            Denoiser4_value = self.ui.denoiser4.text()
+        else: 
+            Denoiser4_value = D_path
+
+        if (len(self.ui.denoiser5.text()) > 1):
+            Denoiser5_value = self.ui.denoiser5.text()
+        else: 
+            Denoiser5_value = E_path
+
+        if (len(self.ui.denoiser6.text()) > 1):
+            Denoiser6_value = self.ui.denoiser6.text()
+        else: 
+            Denoiser6_value = F_path
+
+        if (len(self.ui.denoiser7.text()) > 1):
+            Denoiser7_value = self.ui.denoiser7.text()
+        else: 
+            Denoiser7_value = G_path
+
+        if (len(self.ui.denoiser8.text()) > 1):
+            Denoiser8_value = self.ui.denoiser8.text()
+        else: 
+            Denoiser8_value = H_path
+
+        if (len(self.ui.denoiser9.text()) > 1):
+            Denoiser9_value = self.ui.denoiser9.text()
+        else: 
+            Denoiser9_value = I_path
+
+
+        print("Denoiser1 waarde is:" + str(Denoiser1_value))
+
         if (len(self.ui.denoiser1.text()) > 1 and self.ui.denoiser_radio1.isChecked()):
-            denoiser1_withMarks =  '"' + self.ui.denoiser1.text() + '" '
+
+            denoiser1_withMarks =  '"' + Denoiser1_value + '" '
             self.denoise_command.append(denoiser1_withMarks)
             print(self.denoise_command)
 
         if (len(self.ui.denoiser2.text()) > 1 and self.ui.denoiser_radio2.isChecked()):
-            self.denoise_command.append(self.ui.denoiser2.text())
+
+            denoiser2_withMarks =  '"' + Denoiser2_value + '" '
+            self.denoise_command.append(denoiser1_withMarks)
             print(self.denoise_command)
 
         if (len(self.ui.denoiser3.text()) > 1 and self.ui.denoiser_radio3.isChecked()):
-            self.denoise_command.append(self.ui.denoiser3.text())
+
+            denoiser3_withMarks =  '"' + Denoiser3_value + '" '
+            self.denoise_command.append(denoiser3_withMarks)
             print(self.denoise_command)
 
         if (len(self.ui.denoiser4.text()) > 1 and self.ui.denoiser_radio4.isChecked()):
-            self.denoise_command.append(self.ui.denoiser4.text())
+
+            denoiser4_withMarks =  '"' + Denoiser4_value + '" '
+            self.denoise_command.append(denoiser4_withMarks)
             print(self.denoise_command)
 
         if (len(self.ui.denoiser5.text()) > 1 and self.ui.denoiser_radio5.isChecked()):
-            self.denoise_command.append(self.ui.denoiser5.text())
+
+            denoiser5_withMarks =  '"' + Denoiser5_value + '" '
+            self.denoise_command.append(denoiser5_withMarks)
             print(self.denoise_command)
 
         if (len(self.ui.denoiser6.text()) > 1 and self.ui.denoiser_radio6.isChecked()):
-            self.denoise_command.append(self.ui.denoiser6.text())
+
+            denoiser6_withMarks =  '"' + Denoiser6_value + '" '
+            self.denoise_command.append(denoiser6_withMarks)
             print(self.denoise_command)
 
         if (len(self.ui.denoiser7.text()) > 1 and self.ui.denoiser_radio7.isChecked()):
-            self.denoise_command.append(self.ui.denoiser7.text())
+
+            denoiser7_withMarks =  '"' + Denoiser7_value + '" '
+            self.denoise_command.append(denoiser7_withMarks)
             print(self.denoise_command)
 
         if (len(self.ui.denoiser8.text()) > 1 and self.ui.denoiser_radio8.isChecked()):
-            self.denoise_command.append(self.ui.denoiser8.text())
+
+            denoiser8_withMarks =  '"' + Denoiser8_value + '" '
+            self.denoise_command.append(denoiser8_withMarks)
             print(self.denoise_command)
 
         if (len(self.ui.denoiser9.text()) > 1 and self.ui.denoiser_radio9.isChecked()):
-            self.denoise_command.append(self.ui.denoiser9.text())
+
+            denoiser9_withMarks =  '"' + Denoiser9_value + '" '
+            self.denoise_command.append(denoiser9_withMarks)
             print(self.denoise_command)
 
         if (self.ui.radioButton_gpu_yes.isChecked() ):
@@ -316,7 +384,8 @@ class Mainwindow(qtw.QMainWindow):
         print(type(render_sequence))
         print(render_sequence)
 
-
+    def show_missing_exe():
+        pass
 
 #comboBox_filter
 
