@@ -27,7 +27,7 @@
         </property>
         <property name="maximumSize">
          <size>
-          <width>400</width>
+          <width>450</width>
           <height>70</height>
          </size>
         </property>
@@ -93,7 +93,7 @@
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="Denoise">
          <attribute name="title">
@@ -972,7 +972,7 @@
            </size>
           </property>
           <property name="title">
-           <string>How many threads</string>
+           <string>How many threads (defaults to two less than your total threads)</string>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_32">
            <item>

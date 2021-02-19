@@ -11,6 +11,8 @@ from PyQt5 import QtCore as qtc
 from PyQt5 import QtGui as qtg
 from PyQt5.QtCore import QUrl
 from PyQt5.QtWidgets import QMessageBox
+import importlib
+
 
 import fsutil
 from pathlib import Path
@@ -21,6 +23,18 @@ from interface import Ui_MainWindow
 import qtmodern.styles
 import qtmodern.windows
 
+
+
+
+if getattr(sys, 'frozen', False):
+    root = Path(sys._MEIPASS)
+    qtmodern.styles._STYLESHEET = root / 'qtmodern/style.qss'
+    qtmodern.windows._FL_STYLESHEET = root / 'qtmodern/frameless.qss'
+
+
+
+logical_processors_count = os.cpu_count()
+logical_processors_count_default = logical_processors_count -2
 
 
 A_path = os.environ.get('DC_RENDERMAN_DENOISER_1')
@@ -92,7 +106,11 @@ class Mainwindow(qtw.QMainWindow):
         print(self.denoise_command)
         print("folderpath: " + str(self.folderPath))
         print("custom folder label is: " +  self.ui.custom_folder_label.text())
+        self.ui.comboBox_threads.setCurrentIndex(logical_processors_count_default)
+
         self.show()
+
+
 
     def selectFolder(self):
         catch_folderPath = str(qtw.QFileDialog.getExistingDirectory (self, "Selecteer een Directory"))
