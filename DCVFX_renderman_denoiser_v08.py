@@ -21,9 +21,6 @@ from interface import Ui_MainWindow
 import qtmodern.styles
 import qtmodern.windows
 
-# TODO noisefilterpath fixen, ervoor zorgen dat aan het begin en aan het einde ervan een "" teken komt.
-
-
 
 
 A_path = os.environ.get('DC_RENDERMAN_DENOISER_1')
@@ -36,56 +33,16 @@ G_path = os.environ.get("DC_RENDERMAN_DENOISER_7")
 H_path = os.environ.get("DC_RENDERMAN_DENOISER_8")
 I_path = os.environ.get("DC_RENDERMAN_DENOISER_9")
 
-# First check if the UI exe variable exist, if so use that, if not check ENVs
 
 
-""" root = Path()
-if getattr(sys, 'frozen', False):
-    root = Path(sys._MEIPASS)
-    qtmodern.styles._STYLESHEET = root / 'qtmodern/style.qss'
-    qtmodern.windows._FL_STYLESHEET = root / 'qtmodern/frameless.qss' """
-
-### Generates a command line string that converts rendered frames into denoised frames
-
-path = "H:\\test"
 
 mijn_sequences = ""
-
-
-""" selected_file = "H:\\tes232t\\r_frame187687.exr"
-print("selected file is :" + selected_file)
-without_extention = selected_file.replace(".exr", "")
-my_regex_pattern =  r"\d+\b"
-print("no ext = " + str(without_extention))
-without_number = re.sub(my_regex_pattern, "-----------" ,without_extention)
-#s = without_extention.sub("^\d+\s|\s\d+\s|\s\d+$", " ", s)
-print(without_number)
-print("========================================")
-
-mijn_sequences = fileseq.findSequencesOnDisk('H:/test/r_frame@.exr')
-
-
-regex = "\d*\b"
-
-print("fileseq is"  +  str(mijn_sequences))
-print(type(mijn_sequences))
-print(len(mijn_sequences))
-for p in mijn_sequences:
-
-    for u in p:
-        pass
-        #print("waarde is: " + str(u))
- """
-
 
 RenderManProServerFolder = r"C:\Program Files\Pixar\RenderManProServer-23.1"
 denoiser_path = RenderManProServerFolder + r"\bin\denoise.exe"
 
-
 noisefilter = r"C:\Program Files\Pixar\RenderManProServer-23.1\lib\denoise\splitVariances.filteroverride.json"
 noise_filter_path = RenderManProServerFolder + "\lib\denoise\\"
-
-
 
 def simple_denoise(denoiser_path, filename):
     command = f'"{denoiser_path}" --crossframe -v variance --override gpuIndex 1 -t 6 -f "{noisefilter}" "{filename}"'
@@ -99,9 +56,6 @@ def detect_sequences(pad): # geeft een pad aan en ontvang alle sequences uit dat
     return seq
 
 
-sequences = detect_sequences(path)
-
-folder = "H:\\test\\"
 
 def get_single_file_url(folder, sequences):
     for sequence in sequences:
@@ -116,21 +70,6 @@ def get_single_file_url(folder, sequences):
 def get_folder(file_path):
     folder_path = os.path.dirname(file_path)
     return folder_path
-
-folder_path = get_folder(get_single_file_url(folder,sequences))
-
-
-
-nr_of_sequences = len(sequences)
-
-for i  in sequences:
-    
-    for x in i:
-        folder = "H:\\test\\"
-        # filepath = folder + "\\" +  x
-        full_file_path = str(folder) + str(x)
-
-        #simple_denoise(denoiser_path,full_file_path)
 
 
 
@@ -191,16 +130,6 @@ class Mainwindow(qtw.QMainWindow):
         self.mijn_sequences = mijn_sequences
 
 
-        #render_sequence = pyseq.get_sequences(str(first_filepath_itemUrl))
-        #print(pyseq.__dict__)
-
-        #print(type(render_sequence))
-        #print(render_sequence)
-        #print(frames(render_sequence))
-
-        # get correctversion of the denoiser .exe
-        #denoise_path = self.ui.denoiser1.text()
-
 
 
     def denoiseRender(self):
@@ -209,47 +138,47 @@ class Mainwindow(qtw.QMainWindow):
 
         if (len(self.ui.denoiser1.text()) > 1):
             Denoiser1_value = self.ui.denoiser1.text()
-        else: 
+        else:
             Denoiser1_value = A_path
 
         if (len(self.ui.denoiser2.text()) > 1):
             Denoiser2_value = self.ui.denoiser2.text()
-        else: 
+        else:
             Denoiser2_value = B_path
 
         if (len(self.ui.denoiser3.text()) > 1):
             Denoiser3_value = self.ui.denoiser3.text()
-        else: 
+        else:
             Denoiser3_value = C_path
 
         if (len(self.ui.denoiser4.text()) > 1):
             Denoiser4_value = self.ui.denoiser4.text()
-        else: 
+        else:
             Denoiser4_value = D_path
 
         if (len(self.ui.denoiser5.text()) > 1):
             Denoiser5_value = self.ui.denoiser5.text()
-        else: 
+        else:
             Denoiser5_value = E_path
 
         if (len(self.ui.denoiser6.text()) > 1):
             Denoiser6_value = self.ui.denoiser6.text()
-        else: 
+        else:
             Denoiser6_value = F_path
 
         if (len(self.ui.denoiser7.text()) > 1):
             Denoiser7_value = self.ui.denoiser7.text()
-        else: 
+        else:
             Denoiser7_value = G_path
 
         if (len(self.ui.denoiser8.text()) > 1):
             Denoiser8_value = self.ui.denoiser8.text()
-        else: 
+        else:
             Denoiser8_value = H_path
 
         if (len(self.ui.denoiser9.text()) > 1):
             Denoiser9_value = self.ui.denoiser9.text()
-        else: 
+        else:
             Denoiser9_value = I_path
 
 
@@ -354,22 +283,17 @@ class Mainwindow(qtw.QMainWindow):
         #adds frames
         final_denoise_command = clean_denoise_command 
 
-
-
         # for every sequence deo teh command
 
-
         for render_item in self.mijn_sequences:
-            print(" mijn render_item waarde is: " + str(render_item))
+            print("render_item is: " + str(render_item))
             for render_file in render_item:
-                print("render_file __________ waarde is: " + str(render_file))
+                print("render_file value is: " + str(render_file))
                 clean_render_file = render_file.replace("/", "\\")
                 print(clean_render_file)
                 batch_command = final_denoise_command + " " + clean_render_file
                 print("batch command is: " + batch_command)
                 subprocess.check_output(batch_command, shell=True)
-
-
 
         sequences2 = detect_sequences(self.ui.selected_render_label.text())
         print(sequences2)
