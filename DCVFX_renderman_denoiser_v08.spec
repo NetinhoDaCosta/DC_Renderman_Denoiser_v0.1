@@ -1,19 +1,4 @@
-import importlib
-
-package_imports = [['qtmodern', ['resources/frameless.qss', 'resources/style.qss']]]
-
-added_file = []
-for package, files in package_imports:
-    proot = Path(importlib.import_module(package).__file__).parent
-    added_file.extend((proot / f, package) for f in files)
-
-Analysis(['project/__main__.py'],
-             datas=added_file
-)
-
-
 # -*- mode: python ; coding: utf-8 -*-
-
 
 block_cipher = None
 
