@@ -724,7 +724,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -892,7 +892,7 @@ class Ui_MainWindow(object):
         self.denoise_btn.setText(_translate("MainWindow", "DENOISE YOUR RENDER"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Denoise), _translate("MainWindow", "Denoise"))
         self.label_3.setText(_translate("MainWindow", "Your denoiser.exe folder(s)"))
-        self.denoiser1.setText(_translate("MainWindow", "\"C:\\Program Files\\Pixar\\RenderManProServer-23.1\\bin\\denoise.exe\""))
+        self.denoiser1.setText(_translate("MainWindow", "C:\\Program Files\\Pixar\\RenderManProServer-23.1\\bin\\denoise.exe"))
         self.label_4.setText(_translate("MainWindow", "Select your preferred version to use:"))
         self.label_5.setText(_translate("MainWindow", "V1"))
         self.label_9.setText(_translate("MainWindow", "V2"))

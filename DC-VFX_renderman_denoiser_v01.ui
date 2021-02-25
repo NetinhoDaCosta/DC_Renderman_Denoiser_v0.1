@@ -93,7 +93,7 @@
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="Denoise">
          <attribute name="title">
@@ -1700,7 +1700,7 @@
            </rect>
           </property>
           <property name="text">
-           <string>&quot;C:\Program Files\Pixar\RenderManProServer-23.1\bin\denoise.exe&quot;</string>
+           <string>C:\Program Files\Pixar\RenderManProServer-23.1\bin\denoise.exe</string>
           </property>
          </widget>
          <widget class="QLabel" name="label_4">
