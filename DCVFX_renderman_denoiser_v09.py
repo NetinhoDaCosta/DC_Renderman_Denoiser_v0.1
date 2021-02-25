@@ -24,12 +24,12 @@ import qtmodern.styles
 import qtmodern.windows
 
 
-""" root = Path()
+root = Path()
 if getattr(sys, 'frozen', False):
     root = Path(sys._MEIPASS)
     qtmodern.styles._STYLESHEET = root / 'qtmodern/style.qss'
     qtmodern.windows._FL_STYLESHEET = root / 'qtmodern/frameless.qss'
- """
+
 
 
 logical_processors_count = os.cpu_count()
@@ -333,6 +333,6 @@ if __name__ == "__main__":
     w = Mainwindow()
 
     qtmodern.styles.dark(app)
-    mw = qtmodern.windows.ModernWindow(w)
+    # mw = qtmodern.windows.ModernWindow(w)
     mw.show()
     sys.exit(app.exec_())
