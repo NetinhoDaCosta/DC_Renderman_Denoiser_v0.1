@@ -332,7 +332,7 @@ if __name__ == "__main__":
     app = qtw.QApplication(sys.argv)
     w = Mainwindow()
 
-    qtmodern.styles.dark(app)
-    # mw = qtmodern.windows.ModernWindow(w)
+    # qtmodern.styles.dark(app)
+    mw = qtmodern.windows.ModernWindow(w)
     mw.show()
     sys.exit(app.exec_())
