@@ -1,2 +1,2 @@
-# DC-vfx_renderman_denoiser
-Allows Pixar Renderman users to denoise from disk
+# DC_Renderman_Denoiser
+Allows Pixar Renderman users to use the denoise based on rendered files from disk
