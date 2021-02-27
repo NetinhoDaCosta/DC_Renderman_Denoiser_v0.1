@@ -294,7 +294,7 @@ class Mainwindow(qtw.QMainWindow):
         sequences2 = detect_sequences(self.ui.selected_render_label.text())
 
         render_sequence = pyseq.get_sequences("H:\\test")
-
+        print("Denoising process completed!")
 
     def show_missing_exe():
         pass
