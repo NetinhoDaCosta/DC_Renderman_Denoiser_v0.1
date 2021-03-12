@@ -6,4 +6,6 @@ A few tips to make everything work as expected:
 * Make sure the folder where your render sequence is located does not contain special characters or spaces
 * Everytime you denoise, make sure to close the application (in order to clear memory) and open it again to denoise
 
+
+In this video you can watch what 'DC renderman denoiser' does (what problems it solves), how to install it and how to use it.
 https://youtu.be/maS6VNniRgw
